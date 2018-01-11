@@ -3,73 +3,57 @@ package com.mkyong.web.model;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.mkyong.web.jsonview.Views;
 
+/*User object for search function.
+ Fields which annotated with @JsonView will be displayed.*/
 public class User {
 
 	@JsonView(Views.Public.class)
-	String username;
-	String password;
+	String customer;
 	@JsonView(Views.Public.class)
-	String email;
+	String ccyPair;
 	@JsonView(Views.Public.class)
-	String phone;
-	String address;
+	String error;
 
 	public User() {
 	}
 
-	public User(String username, String password, String email, String phone, String address) {
+	public User(String customer, String email, String error) {
 		super();
-		this.username = username;
-		this.password = password;
-		this.email = email;
-		this.phone = phone;
-		this.address = address;
+		this.customer = customer;
+		this.ccyPair = email;
+		this.error = error;
 	}
 
-	public String getUsername() {
-		return username;
+	public String getCustomer() {
+		return customer;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setCustomer(String customer) {
+		this.customer = customer;
 	}
 
-	public String getPassword() {
-		return password;
+	public String getCcyPair() {
+		return ccyPair;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setCcyPair(String ccyPair) {
+		this.ccyPair = ccyPair;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getError() {
+		return error;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getPhone() {
-		return phone;
-	}
-
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
+	public void setError(String error) {
+		this.error = error;
 	}
 
 	@Override
 	public String toString() {
-		return "User [username=" + username + ", password=" + password + ", email=" + email + ", phone=" + phone
-				+ ", address=" + address + "]";
+		return "User{" +
+				"customer='" + customer + '\'' +
+				", ccyPair='" + ccyPair + '\'' +
+				", error='" + error + '\'' +
+				'}';
 	}
-
 }

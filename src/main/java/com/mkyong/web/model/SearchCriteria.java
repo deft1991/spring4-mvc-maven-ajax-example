@@ -1,29 +1,112 @@
 package com.mkyong.web.model;
 
+import java.util.Date;
+
 public class SearchCriteria {
 
-	String username;
-	String email;
+	String customer;
+	String ccyPair;
+	String type;
+	String direction;
+	Date tradeDate;
+	Long amount1;
+	Long amount2;
+	Double rate;
+	Date valueDate;
+	String legalEntity;
+	String trader;
 
-	public String getUsername() {
-		return username;
+	public String getCustomer() {
+		return customer;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setCustomer(String customer) {
+		this.customer = customer;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getCcyPair() {
+		return ccyPair;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setCcyPair(String ccyPair) {
+		this.ccyPair = ccyPair;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public String getDirection() {
+		return direction;
+	}
+
+	public void setDirection(String direction) {
+		this.direction = direction;
+	}
+
+	public Date getTradeDate() {
+		return tradeDate;
+	}
+
+	public void setTradeDate(Date tradeDate) {
+		this.tradeDate = tradeDate;
+	}
+
+	public Long getAmount1() {
+		return amount1;
+	}
+
+	public void setAmount1(Long amount1) {
+		this.amount1 = amount1;
+	}
+
+	public Long getAmount2() {
+		return amount2;
+	}
+
+	public void setAmount2(Long amount2) {
+		this.amount2 = amount2;
+	}
+
+	public Double getRate() {
+		return rate;
+	}
+
+	public void setRate(Double rate) {
+		this.rate = rate;
+	}
+
+	public Date getValueDate() {
+		return valueDate;
+	}
+
+	public void setValueDate(Date valueDate) {
+		this.valueDate = valueDate;
+	}
+
+	public String getLegalEntity() {
+		return legalEntity;
+	}
+
+	public void setLegalEntity(String legalEntity) {
+		this.legalEntity = legalEntity;
+	}
+
+	public String getTrader() {
+		return trader;
+	}
+
+	public void setTrader(String trader) {
+		this.trader = trader;
 	}
 
 	@Override
 	public String toString() {
-		return "SearchCriteria [username=" + username + ", email=" + email + "]";
+		return "SearchCriteria [customer=" + customer + ", ccyPair=" + ccyPair + "]";
 	}
 
 }

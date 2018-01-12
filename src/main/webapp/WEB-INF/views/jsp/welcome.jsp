@@ -138,7 +138,8 @@
         $.ajax({
             type : "POST",
             contentType : "application/json",
-            url : "search/api/getSearchResult",
+            // url : "search/api/getSearchResult",
+            url : "/welcome",
             data : JSON.stringify(search),
             dataType : 'json',
             timeout : 100000,
@@ -147,8 +148,9 @@
                 display(data);
             },
             error : function(e) {
-//                console.log("ERROR: ", e);
-                alert(e);
+               console.log("ERROR: ", e);
+                display(e);
+                // alert(JSON.stringify(e));
             },
             done : function(e) {
                 console.log("DONE");

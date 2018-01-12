@@ -5,6 +5,7 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 
+import com.mkyong.validators.MainValidator;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,29 +16,28 @@ import com.mkyong.web.jsonview.Views;
 import com.mkyong.web.model.AjaxResponseBody;
 import com.mkyong.web.model.SearchCriteria;
 import com.mkyong.web.model.User;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class AjaxController {
-
-    public static final String PLUTO1 =  "PLUTO1", PLUTO2 = "PLUTO2";
-    static List<User> result;
 
     // @ResponseBody, not necessary, since class is annotated with @RestController
     // @RequestBody - Convert the json data into object (SearchCriteria) mapped by field name.
     // @JsonView(Views.Public.class) - Optional, limited the json data display to client.
     @JsonView(Views.Public.class)
-    @RequestMapping(value = "/search/api/getSearchResult",
+//    @RequestMapping(value = "/search/api/getSearchResult",
+    @RequestMapping(value = "/welcome",
             method = RequestMethod.POST)
-    public AjaxResponseBody getSearchResultViaAjax(@RequestBody SearchCriteria search) {
+    public @ResponseBody AjaxResponseBody getSearchResultViaAjax(@RequestBody SearchCriteria search) {
 
         AjaxResponseBody result = new AjaxResponseBody();
-
+        MainValidator mainValidator = new MainValidator();
         if (isValidSearchCriteria(search)) {
-            List<User> users = validateData(search);
+            List<User> users = mainValidator.validateData(search);
 
             if (users.size() > 0) {
                 result.setCode("204");
-//                result.setMsg("");
+                result.setMsg("qqqqqqqqqqqqqqqqqq");
                 result.setResult(users);
             } else {
                 result.setCode("200");
@@ -67,44 +67,5 @@ public class AjaxController {
 //        }
 
         return valid;
-    }
-
-    // todo validate all fields
-    private List<User> validateData(SearchCriteria search) {
-
-        List<User> result = new ArrayList<User>();
-        //todo migrate all in new class validator
-        validateDate(search);
-        validateWeekend(search);
-        validateCustomers(search);
-        return result;
-    }
-
-    private void validateDate(SearchCriteria search) {
-        if (search.getValueDate().before(search.getTradeDate()))
-            result.add(new User(search.getCustomer(), search.getCcyPair(), "Value date cannot be before trade date"));
-    }
-
-    private void validateWeekend(SearchCriteria search) {
-        Calendar startDate = GregorianCalendar.getInstance();
-        startDate.set(2017, 06, 18); // 23 MAY 2014
-        Calendar valueDate = GregorianCalendar.getInstance();
-        valueDate.setTime(search.getValueDate());
-        if (isSaturdayOrSunday(startDate)) {
-            result.add(new User(search.getCustomer(), search.getCcyPair(), "Value date cannot fall on weekend or non-working day for currency "));
-        }
-    }
-
-    private void validateCustomers(SearchCriteria search) {
-        String customer = search.getCustomer();
-        if (!PLUTO1.equals(customer) && !PLUTO2.equals(customer))
-            new User(search.getCustomer()
-                    , search.getCcyPair()
-                    , "counterparty is one of the supported ones: " + PLUTO1 + ", " + PLUTO2);
-
-    }
-
-    public static boolean isSaturdayOrSunday(Calendar gc) {
-        return (gc.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY || gc.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY);
     }
 }

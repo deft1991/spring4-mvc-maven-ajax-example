@@ -9,6 +9,8 @@ public class SearchCriteria {
 	String type;
 	String direction;
 	Date tradeDate;
+	// for US style
+	Date excerciseStartDate, expiryDate, premium;
 	Long amount1;
 	Long amount2;
 	Double rate;
@@ -54,6 +56,30 @@ public class SearchCriteria {
 
 	public void setTradeDate(Date tradeDate) {
 		this.tradeDate = tradeDate;
+	}
+
+	public Date getExcerciseStartDate() {
+		return excerciseStartDate;
+	}
+
+	public void setExcerciseStartDate(Date excerciseStartDate) {
+		this.excerciseStartDate = excerciseStartDate;
+	}
+
+	public Date getExpiryDate() {
+		return expiryDate;
+	}
+
+	public void setExpiryDate(Date expiryDate) {
+		this.expiryDate = expiryDate;
+	}
+
+	public Date getPremium() {
+		return premium;
+	}
+
+	public void setPremium(Date premium) {
+		this.premium = premium;
 	}
 
 	public Long getAmount1() {

@@ -129,11 +129,13 @@
 
     function searchViaAjax() {
 
-        var search = {}
+        var search = {};
         search["customer"] = $("#customer").val();
         search["ccyPair"] = $("#ccyPair").val();
         search["tradeDate"] = $("#tradeDate").val();
         search["valueDate"] = $("#valueDate").val();
+
+        var arr = {"test":[search, search]};
 
         $.ajax({
             type : "POST",

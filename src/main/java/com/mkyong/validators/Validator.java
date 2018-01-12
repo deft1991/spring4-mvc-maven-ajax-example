@@ -1,7 +1,6 @@
 package com.mkyong.validators;
 
-import com.mkyong.web.model.SearchCriteria;
-import com.mkyong.web.model.User;
+import com.mkyong.web.model.Trade;
 
 import java.util.List;
 
@@ -10,5 +9,6 @@ import java.util.List;
  */
 
 public interface Validator {
-     List<User> validateData(SearchCriteria search);
+     boolean isValidSearchCriteria();
+     List<Trade> validateData();
 }

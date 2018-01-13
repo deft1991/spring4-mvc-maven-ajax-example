@@ -28,6 +28,12 @@ public class AjaxController {
     public @ResponseBody
     AjaxResponseBody getSearchResultViaAjax(@RequestBody SearchCriteria[] search) {
 
+        //AjaxResponseBody will be converted into json format and send back to client.
+        return validateRequest(search);
+
+    }
+
+    private AjaxResponseBody validateRequest(SearchCriteria[] search) {
         AjaxResponseBody result = new AjaxResponseBody();
         List<Trade> errTrades = new ArrayList<>();
         for (SearchCriteria searchCriteria : search) {
@@ -36,9 +42,7 @@ public class AjaxController {
             if (mainValidator.isValidSearchCriteria()) {
                 errTrades.addAll(mainValidator.validateData());
             } else {
-                result.setCode("400");
-                result.setMsg("Trade isn't valid!");
-                result.setResult(mainValidator.getErrTrade());
+                errTrades.add(mainValidator.getCurTrade());
             }
         }
         if (errTrades.size() > 0) {
@@ -49,10 +53,7 @@ public class AjaxController {
             result.setCode("200");
             result.setMsg("All fine!");
         }
-
-        //AjaxResponseBody will be converted into json format and send back to client.
         return result;
-
     }
 
 }

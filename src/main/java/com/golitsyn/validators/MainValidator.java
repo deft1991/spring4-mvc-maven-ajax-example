@@ -21,7 +21,7 @@ public class MainValidator implements Validator {
     private static final String PLUTO1 = "PLUTO1", PLUTO2 = "PLUTO2";
 
     private SearchCriteria search;
-    private static List<Trade> errTrade = new ArrayList<>();
+    private List<Trade> errTrade = new ArrayList<>();
     private Trade curTrade = new Trade();
     private boolean usFlag = false;
     private boolean isStyle = true;
@@ -39,6 +39,10 @@ public class MainValidator implements Validator {
 
     public List<Trade> getErrTrade() {
         return errTrade;
+    }
+
+    public Trade getCurTrade() {
+        return curTrade;
     }
 
     public boolean isValidSearchCriteria() {
@@ -63,7 +67,7 @@ public class MainValidator implements Validator {
             }
             if (isStyle) {
                 validStyleFields();
-            }
+        }
         } catch (IllegalAccessException | NoSuchFieldException e) {
             setTradeErr(e.getMessage());
             e.printStackTrace();

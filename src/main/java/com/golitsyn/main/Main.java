@@ -1,11 +1,18 @@
 package com.golitsyn.main;
 
+import org.json.JSONObject;
+
 import javax.net.ssl.HttpsURLConnection;
+import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLConnection;
 import java.util.Currency;
 import java.util.Locale;
 
@@ -18,7 +25,7 @@ public class Main {
 //
 //    }
 
-    public static final String URL = "http://localhost:8080/";
+    private static final String URL = "http://localhost:8080/";
 
     public static void main(String[] args) throws Exception {
         Main http = new Main();
@@ -48,7 +55,7 @@ public class Main {
         BufferedReader in = new BufferedReader(
                 new InputStreamReader(con.getInputStream()));
         String inputLine;
-        StringBuffer response = new StringBuffer();
+        StringBuilder response = new StringBuilder();
 
         while ((inputLine = in.readLine()) != null) {
             response.append(inputLine);
@@ -63,40 +70,26 @@ public class Main {
     // HTTP POST request
     private void sendPost() throws Exception {
 
-        String url = "http://localhost:8080/";
-        url += "search/api/getSearchResult";
-        URL obj = new URL(url);
-        HttpsURLConnection con = (HttpsURLConnection) obj.openConnection();
+        String urlS = "http://localhost:8080/";
+        urlS += "search/api/getSearchResult";
+        final URL url = new URL(urlS);
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        conn.setConnectTimeout(5000);
+        conn.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
+        conn.setDoOutput(true);
+        conn.setDoInput(true);
+        conn.setRequestMethod("POST");
 
-        //add reuqest header
-        con.setRequestMethod("POST");
-        String urlParameters = "sn=C02G8416DRJM&cn=&locale=&caller=&num=12345";
+        JSONObject cred   = new JSONObject(
+                "{\"customer\":\"PLUTO1\"" +
+                        ",\"ccyPair\":\"EURUSD\"" +
+                        ",\"trader\":\"JohannBaumfiddler\"}");
 
-        // Send post request
-        con.setDoOutput(true);
-        DataOutputStream wr = new DataOutputStream(con.getOutputStream());
-        wr.writeBytes(urlParameters);
-        wr.flush();
-        wr.close();
-
-        int responseCode = con.getResponseCode();
-        System.out.println("\nSending 'POST' request to URL : " + url);
-        System.out.println("Post parameters : " + urlParameters);
-        System.out.println("Response Code : " + responseCode);
-
-        BufferedReader in = new BufferedReader(
-                new InputStreamReader(con.getInputStream()));
-        String inputLine;
-        StringBuffer response = new StringBuffer();
-
-        while ((inputLine = in.readLine()) != null) {
-            response.append(inputLine);
-        }
-        in.close();
-
-        //print result
-        System.out.println(response.toString());
-
+        OutputStream os = conn.getOutputStream();
+        os.write(cred.toString().getBytes("UTF-8"));
+        os.close();
+        InputStream in = new BufferedInputStream(conn.getInputStream());
+        System.out.println(conn.getResponseCode());
     }
 
 }

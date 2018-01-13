@@ -1,7 +1,10 @@
-package com.mkyong.web.model;
+package com.golitsyn.web.model;
 
 import com.fasterxml.jackson.annotation.JsonView;
-import com.mkyong.web.jsonview.Views;
+import com.golitsyn.web.jsonview.Views;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /*Trade object for search function.
  Fields which annotated with @JsonView will be displayed.*/
@@ -12,16 +15,22 @@ public class Trade {
     @JsonView(Views.Public.class)
     String ccyPair;
     @JsonView(Views.Public.class)
-    String error;
+    List<String> error = new ArrayList<>();
 
     public Trade() {
+    }
+
+    public Trade(String customer, String email) {
+        super();
+        this.customer = customer;
+        this.ccyPair = email;
     }
 
     public Trade(String customer, String email, String error) {
         super();
         this.customer = customer;
         this.ccyPair = email;
-        this.error = error;
+        this.error.add(error);
     }
 
     public String getCustomer() {
@@ -40,12 +49,12 @@ public class Trade {
         this.ccyPair = ccyPair;
     }
 
-    public String getError() {
+    public List<String > getError() {
         return error;
     }
 
     public void setError(String error) {
-        this.error = error;
+        this.error.add(error);
     }
 
     public static Trade createTrade(String customer, String ccyPair, String error) {

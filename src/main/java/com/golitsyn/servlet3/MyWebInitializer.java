@@ -1,4 +1,4 @@
-package com.mkyong.servlet3;
+package com.golitsyn.servlet3;
 
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
@@ -12,7 +12,7 @@ import javax.servlet.ServletRegistration;
 
 public class MyWebInitializer implements WebApplicationInitializer {
 
-	private static final String CONFIG_LOCATION = "com.mkyong.config";
+	private static final String CONFIG_LOCATION = "com.golitsyn.config";
 	private static final String MAPPING_URL = "/*";
 
 	@Override

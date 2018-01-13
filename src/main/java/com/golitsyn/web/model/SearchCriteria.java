@@ -1,22 +1,26 @@
-package com.mkyong.web.model;
+package com.golitsyn.web.model;
 
 import java.util.Date;
 
 public class SearchCriteria {
 
-	String customer;
-	String ccyPair;
-	String type;
-	String direction;
-	Date tradeDate;
+	private String customer;
+	private String ccyPair;
+	private String type;
+	private	String direction;
+	private Date tradeDate;
+	private Long amount1;
+	private Long amount2;
+	private Double rate;
+	private Date valueDate;
+	private String legalEntity;
+	private String trader;
+	private String strategy;
+	private String style;
 	// for US style
-	Date excerciseStartDate, expiryDate, premium;
-	Long amount1;
-	Long amount2;
-	Double rate;
-	Date valueDate;
-	String legalEntity;
-	String trader;
+	private Date excerciseStartDate, expiryDate, deliveryDate, premiumDate;
+	private Double premium;
+	private String payCcy, premiumCcy,premiumType;
 
 	public String getCustomer() {
 		return customer;
@@ -74,11 +78,11 @@ public class SearchCriteria {
 		this.expiryDate = expiryDate;
 	}
 
-	public Date getPremium() {
+	public Double getPremium() {
 		return premium;
 	}
 
-	public void setPremium(Date premium) {
+	public void setPremium(Double premium) {
 		this.premium = premium;
 	}
 
@@ -130,9 +134,65 @@ public class SearchCriteria {
 		this.trader = trader;
 	}
 
+	public Date getDeliveryDate() {
+		return deliveryDate;
+	}
+
+	public void setDeliveryDate(Date deliveryDate) {
+		this.deliveryDate = deliveryDate;
+	}
+
+	public String getPayCcy() {
+		return payCcy;
+	}
+
+	public void setPayCcy(String payCcy) {
+		this.payCcy = payCcy;
+	}
+
+	public String getPremiumCcy() {
+		return premiumCcy;
+	}
+
+	public void setPremiumCcy(String premiumCcy) {
+		this.premiumCcy = premiumCcy;
+	}
+
+	public String getPremiumType() {
+		return premiumType;
+	}
+
+	public void setPremiumType(String premiumType) {
+		this.premiumType = premiumType;
+	}
+
+	public Date getPremiumDate() {
+		return premiumDate;
+	}
+
+	public void setPremiumDate(Date premiumDate) {
+		this.premiumDate = premiumDate;
+	}
+
+	public String getStrategy() {
+		return strategy;
+	}
+
+	public void setStrategy(String strategy) {
+		this.strategy = strategy;
+	}
+
+	public String getStyle() {
+		return style;
+	}
+
+	public void setStyle(String style) {
+		this.style = style;
+	}
+
 	@Override
 	public String toString() {
-		return "SearchCriteria [customer=" + customer + ", ccyPair=" + ccyPair + "]";
+		return "[customer=" + customer + ", ccyPair=" + ccyPair + "]";
 	}
 
 }

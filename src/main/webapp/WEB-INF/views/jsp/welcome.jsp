@@ -129,20 +129,63 @@
 
     function searchViaAjax() {
 
-        var search = {};
-        search["customer"] = $("#customer").val();
-        search["ccyPair"] = $("#ccyPair").val();
-        search["tradeDate"] = $("#tradeDate").val();
-        search["valueDate"] = $("#valueDate").val();
+//        var search = {};
+//        search["customer"] = $("#customer").val();
+//        search["ccyPair"] = $("#ccyPair").val();
+//        search["type"] = $("#type").val();
+//        search["direction"] = $("#direction").val();
+//        search["tradeDate"] = $("#tradeDate").val();
+//        search["amount1"] = $("#amount1").val();
+//        search["amount2"] = $("#amount2").val();
+//        search["rate"] = $("#rate").val();
+//        search["valueDate"] = $("#valueDate").val();
+//        search["legalEntity"] = $("#legalEntity").val();
+//        search["trader"] = $("#trader").val();
+        var search1 = {};
+        search1["customer"] = 'PLUTO1';
+        search1["ccyPair"] = 'EURUSD';
+        search1["type"] = 'Spot';
+        search1["direction"] ='BUY';
+        search1["tradeDate"] = '2016-08-11';
+        search1["amount1"] = 1000000.00;
+        search1["amount2"] = 1120000.00;
+        search1["rate"] = 1.12;
+        search1["valueDate"] = '2016-08-15';
+        search1["legalEntity"] = 'CS Zurich';
+        search1["trader"] = 'JohannBaumfiddler';
 
-        var arr = {"test":[search, search]};
+        var search2 = {};
+        search2["customer"] = 'PLUTO1';
+        search2["ccyPair"] = 'EURUSD';
+        search2["type"] = 'VanillaOption';
+        search2["style"] = 'AMERICAN';
+        search2["direction"] ='BUY';
+        search2["strategy"] ='CALL';
+        search2["tradeDate"] = '2016-08-11';
+        search2["amount1"] = 1000000.00;
+        search2["amount2"] = 1120000.00;
+        search2["rate"] = 1.12;
+        search2["deliveryDate"] = '2016-08-22';
+        search2["expiryDate"] = '2016-08-19';
+        search2["excerciseStartDate"] = '2016-08-12';
+        search2["payCcy"] = 'USD';
+        search2["premium"] = 0.20;
+        search2["premiumCcy"] = 'USD';
+        search2["premiumType"] = '$USD';
+//        search2["premiumType"] = '%USD';
+        search2["premiumDate"] = '2016-08-12';
+        search2["legalEntity"] = 'CS Zurich';
+        search2["trader"] = 'Johann Baumfiddler';
+
+//        var arr = {"test":[search1, search2]};
+        var arr = [search1, search2];
 
         $.ajax({
             type : "POST",
             contentType : "application/json",
-            // url : "search/api/getSearchResult",
-            url : "/welcome",
-            data : JSON.stringify(search),
+             url : "search/api/getSearchResult",
+//            url : "/welcome",
+            data : JSON.stringify(arr),
             dataType : 'json',
             timeout : 100000,
             success : function(data) {

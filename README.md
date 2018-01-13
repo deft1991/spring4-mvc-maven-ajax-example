@@ -1,9 +1,9 @@
-Spring 4 MVC Ajax Example
+Spring 5 MVC Ajax
 ===============================
-Template for Spring 4 MVC + jQuery Ajax + Jackson2, using Maven build tool.
+Template for Spring 5 MVC + jQuery Ajax + Jackson2, using Maven build tool.
 
 ###1. Technologies used
-* Spring 4.2.2.RELEASE
+* Spring 5.0.0.RELEASE
 * Jackson 2.6.3
 * jQuery 1.10.2
 * Boostrap 3

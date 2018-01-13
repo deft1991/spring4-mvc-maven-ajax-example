@@ -1,6 +1,6 @@
-package com.mkyong.validators;
+package com.golitsyn.validators;
 
-import com.mkyong.web.model.Trade;
+import com.golitsyn.web.model.Trade;
 
 import java.util.List;
 

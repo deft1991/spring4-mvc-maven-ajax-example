@@ -1,4 +1,4 @@
-package com.mkyong.validators;
+package com.golitsyn.validators;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;

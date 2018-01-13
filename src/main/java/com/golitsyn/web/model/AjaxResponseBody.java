@@ -1,9 +1,9 @@
-package com.mkyong.web.model;
+package com.golitsyn.web.model;
 
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonView;
-import com.mkyong.web.jsonview.Views;
+import com.golitsyn.web.jsonview.Views;
 
 public class AjaxResponseBody {
 

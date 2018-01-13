@@ -1,4 +1,4 @@
-package com.mkyong.web.jsonview;
+package com.golitsyn.web.jsonview;
 
 /*Create a dummy class for @JsonView
 , to control what should be returned back to the request.*/

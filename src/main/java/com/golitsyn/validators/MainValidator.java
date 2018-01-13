@@ -205,7 +205,7 @@ public class MainValidator implements Validator {
 //        if (excercise.before(trade) || excercise.after(value)) {
 //            setTradeErr("Excercise start date cannot be up to trade");
 //        }
-        if (delivery.after(premiumDate) || delivery.after(excercise)) {
+        if (delivery.before(premiumDate) || delivery.before(excercise)) {
             setTradeErr("Expiry date and premium date shall be before delivery date");
         }
     }
